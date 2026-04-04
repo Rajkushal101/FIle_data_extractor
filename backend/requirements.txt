@@ -1,0 +1,57 @@
+# Core Framework
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.6
+
+# PDF Processing (Python 3.14 compatible)
+pymupdf>=1.24.0
+
+# Office Documents
+python-docx>=1.1.0
+python-pptx>=0.6.23
+
+# Image Processing (Python 3.14 compatible)
+pillow>=11.0.0
+opencv-python>=4.10.0.84
+
+# HTTP Client
+requests>=2.31.0
+httpx>=0.26.0
+
+# Environment Variables
+python-dotenv>=1.0.0
+
+# Data Validation
+pydantic>=2.5.3
+pydantic-settings>=2.1.0
+email-validator>=2.0.0
+
+# Rate Limiting (optional)
+slowapi>=0.1.9
+
+# Async File Operations
+aiofiles>=23.2.1
+
+# System Monitoring (optional)
+psutil>=5.9.8
+
+# Utilities
+python-jose>=3.3.0
+
+# PDF Generation & Export (Phase 1)
+weasyprint>=60.2.1              # HTML to PDF conversion
+reportlab>=4.0.9                # Advanced PDF features
+markdown>=3.5.2                 # Markdown parsing
+python-markdown-math>=0.8       # Math extensions for Markdown
+pygments>=2.17.2                # Code syntax highlighting
+beautifulsoup4>=4.12.0          # HTML parsing
+lxml>=5.0.0                     # XML/HTML processing
+cairosvg>=2.7.0                 # SVG support for WeasyPrint
+
+# Authentication & Database (Phase 3)
+sqlalchemy>=2.0.25              # ORM for database
+alembic>=1.13.1                 # Database migrations
+passlib[bcrypt]>=1.7.4          # Password hashing
+python-jose[cryptography]>=3.3.0  # JWT tokens
+python-multipart>=0.0.6         # Form data handling
+itsdangerous>=2.1.2             # Secure token generation

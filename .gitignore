@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv/
+.venv-1/
+**/.venv/
+**/.venv-1/
+**/venv/
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+.env.local
+*.log
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/temp/*
+!backend/temp/.gitkeep
+backend/backend/uploads/*
+backend/backend/temp/*
+backend/logs/*
+
+# Node
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/

@@ -1,0 +1,415 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --foreground-rgb: 30, 32, 34;
+    --background-rgb: 240, 245, 249;
+    --accent-rgb: 82, 97, 107;
+    --accent-2-rgb: 30, 32, 34;
+    --paper-rgb: 240, 245, 249;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground-rgb: 241, 245, 249;
+      --background-rgb: 15, 23, 42;
+    }
+  }
+
+  * {
+    @apply border-gray-200 dark:border-gray-700;
+  }
+
+  body {
+    @apply text-gray-900 dark:text-gray-100;
+    background: radial-gradient(circle at 20% 10%, rgba(240, 245, 249, 0.95), rgba(240, 245, 249, 1) 40%),
+                linear-gradient(160deg, rgba(240, 245, 249, 1) 0%, rgba(201, 214, 223, 1) 100%);
+  }
+}
+
+/* ==================== Custom Animations ==================== */
+
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+  background-size: 1000px 100%;
+}
+
+/* ==================== Background Effects ==================== */
+
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+}
+
+/* ==================== KaTeX Math Rendering ==================== */
+
+.katex {
+  font-size: 1.1em;
+}
+
+.katex-display {
+  margin: 1.5em 0;
+  text-align: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* ==================== Custom Scrollbar ==================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 dark:bg-gray-600 rounded-lg;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500 dark:bg-gray-500;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(156 163 175) rgb(243 244 246);
+}
+
+@media (prefers-color-scheme: dark) {
+  * {
+    scrollbar-color: rgb(75 85 99) rgb(31 41 55);
+  }
+}
+
+/* ==================== Loading States ==================== */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ==================== Gradient Text ==================== */
+
+.gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(to right, #52616B, #1E2022);
+}
+
+@media (prefers-color-scheme: dark) {
+  .gradient-text {
+      background-image: linear-gradient(to right, #C9D6DF, #F0F5F9);
+  }
+}
+
+/* ==================== Glassmorphism ==================== */
+
+.glass {
+  @apply bg-white/80 dark:bg-gray-800/80;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.glass-strong {
+  @apply bg-white/90 dark:bg-gray-800/90;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.liquid-glass {
+  background: linear-gradient(130deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.28));
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 18px 40px rgba(33, 52, 79, 0.16);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+}
+
+.neo-brutal {
+  background: #C9D6DF;
+  border: 2px solid #1E2022;
+  box-shadow: 8px 8px 0 #1E2022;
+}
+
+.neo-brutal-soft {
+  background: #F0F5F9;
+  border: 2px solid #1E2022;
+  box-shadow: 6px 6px 0 #1E2022;
+}
+
+.clay {
+  background: linear-gradient(160deg, #F0F5F9 0%, #C9D6DF 100%);
+  border-radius: 24px;
+  box-shadow: 12px 12px 26px rgba(82, 97, 107, 0.2), -8px -8px 22px rgba(255, 255, 255, 0.75);
+}
+
+.skeuo-panel {
+  background: linear-gradient(180deg, rgb(var(--paper-rgb)) 0%, #e7eef4 100%);
+  border: 1px solid #C9D6DF;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 20px rgba(82, 97, 107, 0.14);
+}
+
+.minimal-surface {
+  background: rgba(240, 245, 249, 0.82);
+  border: 1px solid rgba(82, 97, 107, 0.24);
+}
+
+.grain-overlay {
+  position: relative;
+}
+
+.grain-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: radial-gradient(#000 0.5px, transparent 0.5px);
+  background-size: 3px 3px;
+}
+
+/* ==================== Rendered Notes Content ==================== */
+
+.math-content {
+  color: #1E2022;
+  line-height: 1.8;
+}
+
+.math-content h1,
+.math-content h2,
+.math-content h3,
+.math-content h4 {
+  color: #1E2022;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.math-content p,
+.math-content li {
+  color: #1E2022;
+}
+
+.math-content ul,
+.math-content ol {
+  padding-left: 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.math-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  border: 1px solid #C9D6DF;
+  background: #F8FBFD;
+  border-radius: 12px;
+  overflow: hidden;
+  display: block;
+  overflow-x: auto;
+}
+
+.math-content thead {
+  background: #C9D6DF;
+}
+
+.math-content th,
+.math-content td {
+  border: 1px solid #C9D6DF;
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  color: #1E2022;
+  vertical-align: top;
+}
+
+.math-content .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
+
+/* ==================== Code Blocks ==================== */
+
+pre {
+  @apply bg-gray-900 dark:bg-gray-950 text-gray-100 rounded-xl p-4 overflow-x-auto;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+code {
+  @apply text-sm bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+pre code {
+  @apply bg-transparent p-0;
+}
+
+/* ==================== Custom Utilities ==================== */
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(82, 97, 107, 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  .shadow-glow {
+    box-shadow: 0 0 30px rgba(82, 97, 107, 0.45);
+  }
+}
+
+/* ==================== Focus Styles for Accessibility ==================== */
+
+*:focus-visible {
+  @apply outline-none ring-2 ring-slate-600 ring-offset-2 ring-offset-white dark:ring-offset-gray-900;
+}
+
+/* ==================== Selection Styles ==================== */
+
+::selection {
+  background: #52616B;
+  color: #F0F5F9;
+}
+
+::-moz-selection {
+  background: #52616B;
+  color: #F0F5F9;
+}
