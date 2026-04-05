@@ -51,7 +51,7 @@ function createTimeoutSignal(timeoutMs: number): { signal: AbortSignal; cleanup:
 
 function normalizeApiError(error: unknown, fallback: string): Error {
   if (error instanceof DOMException && error.name === 'AbortError') {
-    return new Error('Request timed out. Please try again.')
+    return new Error('Request timed out. Large files may take longer. Please retry with the same file.')
   }
 
   if (error instanceof TypeError) {
@@ -125,13 +125,10 @@ export const api = {
 
     const url = `${API_BASE_URL}/api/process-document?${params.toString()}`
 
-    const { signal, cleanup } = createTimeoutSignal(DEFAULT_TIMEOUT_MS)
-
     try {
       const response = await fetch(url, {
         method: 'POST',
         body: formData,
-        signal,
       })
 
       if (!response.ok) {
@@ -141,8 +138,6 @@ export const api = {
       return response.json()
     } catch (error) {
       throw normalizeApiError(error, 'Processing failed')
-    } finally {
-      cleanup()
     }
   },
 
