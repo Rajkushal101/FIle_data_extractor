@@ -55,4 +55,4 @@ passlib[bcrypt]>=1.7.4          # Password hashing
 python-jose[cryptography]>=3.3.0  # JWT tokens
 python-multipart>=0.0.6         # Form data handling
 itsdangerous>=2.1.2             # Secure token generation
-psycopg2-binary
+psycopg2-binary==2.9.9
