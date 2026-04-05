@@ -3,7 +3,9 @@
  * Handles all backend communication
  */
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  'https://file-data-extractor.onrender.com'
 const DEFAULT_TIMEOUT_MS = 120000
 
 interface ApiErrorPayload {
@@ -53,7 +55,7 @@ function normalizeApiError(error: unknown, fallback: string): Error {
   }
 
   if (error instanceof TypeError) {
-    return new Error('Cannot reach backend API. Make sure the backend is running on http://localhost:8000.')
+    return new Error('Cannot reach backend API. Please check backend service availability and CORS settings.')
   }
 
   if (error instanceof Error && error.message.trim()) {
@@ -121,7 +123,7 @@ export const api = {
       strict_provider: String(strictProvider),
     })
 
-    const url = `${API_URL}/api/process-document?${params.toString()}`
+    const url = `${API_BASE_URL}/api/process-document?${params.toString()}`
 
     const { signal, cleanup } = createTimeoutSignal(DEFAULT_TIMEOUT_MS)
 
@@ -156,7 +158,7 @@ export const api = {
    */
   async getSupportedFormats() {
     try {
-      const response = await fetch(`${API_URL}/api/supported-formats`)
+      const response = await fetch(`${API_BASE_URL}/api/supported-formats`)
       if (!response.ok) {
         throw new Error(await parseErrorResponse(response, 'Unable to fetch supported formats'))
       }
@@ -171,7 +173,7 @@ export const api = {
    */
   async healthCheck() {
     try {
-      const response = await fetch(`${API_URL}/api/health`)
+      const response = await fetch(`${API_BASE_URL}/api/health`)
       if (!response.ok) {
         throw new Error(await parseErrorResponse(response, 'Health check failed'))
       }
@@ -188,7 +190,7 @@ export const api = {
     const params = new URLSearchParams()
     if (filename) params.append('filename', filename)
 
-    const url = `${API_URL}/api/export/math-text${params.toString() ? `?${params.toString()}` : ''}`
+    const url = `${API_BASE_URL}/api/export/math-text${params.toString() ? `?${params.toString()}` : ''}`
     const { signal, cleanup } = createTimeoutSignal(DEFAULT_TIMEOUT_MS)
     try {
       const response = await fetch(url, {
@@ -229,7 +231,7 @@ export const api = {
 
     const { signal, cleanup } = createTimeoutSignal(DEFAULT_TIMEOUT_MS)
     try {
-      const response = await fetch(`${API_URL}/api/enhance-text?${params.toString()}`, {
+      const response = await fetch(`${API_BASE_URL}/api/enhance-text?${params.toString()}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -4,7 +4,9 @@ import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+const API_BASE_URL =
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    'https://file-data-extractor.onrender.com'
 
 interface User {
     id: number
@@ -39,7 +41,7 @@ export default function DashboardPage() {
         try {
             setError(null)
             // Fetch user stats
-            const statsRes = await fetch(`${API_URL}/api/auth/stats`, {
+            const statsRes = await fetch(`${API_BASE_URL}/api/auth/stats`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             })
             if (statsRes.ok) {
@@ -51,7 +53,7 @@ export default function DashboardPage() {
             }
 
             // Fetch recent documents
-            const docsRes = await fetch(`${API_URL}/api/documents?limit=5`, {
+            const docsRes = await fetch(`${API_BASE_URL}/api/documents?limit=5`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             })
             if (docsRes.ok) {
