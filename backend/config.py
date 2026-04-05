@@ -29,6 +29,10 @@ class Settings(BaseSettings):
         default="http://localhost:3000,http://127.0.0.1:3000",
         env="ALLOWED_ORIGINS"
     )
+    CORS_ALLOW_ORIGIN_REGEX: str = Field(
+        default=r"https://.*\.vercel\.app",
+        env="CORS_ALLOW_ORIGIN_REGEX"
+    )
     
     # File Upload Settings
     MAX_FILE_SIZE: int = Field(default=52428800, env="MAX_FILE_SIZE")  # 50MB
@@ -90,8 +94,13 @@ class Settings(BaseSettings):
     def get_allowed_origins(self) -> List[str]:
         """Get allowed origins as a list"""
         if isinstance(self.ALLOWED_ORIGINS, str):
-            return [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",")]
+            return [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",") if origin.strip()]
         return self.ALLOWED_ORIGINS
+
+    @property
+    def get_cors_allow_origin_regex(self) -> str:
+        """Regex pattern used by CORS middleware for preview deployments (e.g., Vercel)."""
+        return self.CORS_ALLOW_ORIGIN_REGEX.strip()
     
     class Config:
         env_file = ".env"
